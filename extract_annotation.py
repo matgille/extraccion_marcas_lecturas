@@ -48,7 +48,8 @@ class Document:
         self.ovewrite_transcription = overwrite_transcription
         self.overwrite_normalization = overwrite_normalization
         # Let's create the dirs
-        for directory in ["results/yolo_extracted_fragments/", 
+        for directory in ["results",
+                          "results/yolo_extracted_fragments/", 
                           "results/kraken_segmentation_results", 
                           "results/kraken_transcription_results"]:
             try:
