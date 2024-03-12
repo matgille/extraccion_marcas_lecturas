@@ -9,6 +9,7 @@ from kraken.lib import vgsl
 import glob
 from ultralytics import YOLO as YOLO
 from PIL import Image
+import unicodedata
 
 
 
@@ -101,12 +102,15 @@ class Page():
             else:
                 with open(file, "r") as transcription:
                     transcription_as_string = transcription.read()
+                    print("Orig text:")
                 print(transcription_as_string)
                 for orig, reg in table:
                     transcription_as_string = transcription_as_string.replace(orig, reg)
+                print("Normalized text:")
                 print(transcription_as_string)
                 with open(file.replace('.txt', '.normalized.txt'), "w") as normalized_file:
-                    normalized_file.write(transcription_as_string)
+                    correctly_encoded = unicodedata.normalize(transcription_as_string, "NFC")
+                    normalized_file.write(correctly_encoded)
             
     def get_annotated_lines(self, overwrite_extraction):
         """
@@ -148,9 +152,7 @@ class Page():
                 bx_2 = baseline[1][0]
                 by_2 = baseline[1][1]
                 if all([bx_1 > x_1, bx_2 < x_2, by_1 > y_1, by_2 < y_2]):
-                    print("Found line")
                     annotated_lines.append(line)
-            print(f"Found {len(annotated_lines)} lines")
             new_dict = {"text-direction": "horizontal-lr", 
                         "type": "baselines", 
                         "lines": annotated_lines,
