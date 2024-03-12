@@ -29,14 +29,16 @@ def read_json(path:str) -> dict:
 
 
 class Document:
-    def __init__(self, path, 
+    def __init__(self, 
+                 path, 
                  extension, 
                  yolo_model_path, 
                  kraken_segmentation_model_path, 
                  kraken_transcription_model,
                  overwrite_extraction,
                  overwrite_segmentation,
-                 overwrite_transcription):
+                 overwrite_transcription,
+                 overwrite_normalization):
         self.fragments = dict()
         self.path = path
         self.extension = extension
@@ -49,6 +51,7 @@ class Document:
         self.overwrite_extraction = overwrite_extraction
         self.overwrite_segmentation = overwrite_segmentation
         self.ovewrite_transcription = overwrite_transcription
+        self.overwrite_normalization = overwrite_normalization
         # Let's create the dirs
         for directory in ["results/yolo_extracted_fragments/", 
                           "results/kraken_segmentation_results", 
@@ -73,6 +76,7 @@ class Document:
                 NewPage.segment_lines(overwrite_segmentation=self.overwrite_segmentation)
                 NewPage.get_lines()
                 NewPage.transcribe(overwrite_transcription=self.ovewrite_transcription)
+                NewPage.normalize(overwrite_normalization=self.overwrite_normalization)
             
 class Page():
     def __init__(self, page, yolo_model, kraken_segmentation_model, kraken_transcription_model):
@@ -92,6 +96,20 @@ class Page():
         self.transcription_model = kraken_transcription_model
     
     
+    def normalize(self, overwrite_normalization):
+        with open("models/abreviation_table.tsv", "r") as abreviation_table:
+            table = [item.replace("\n", "").split("\t") for item in abreviation_table.readlines()]
+        for file in glob.glob(f"results/kraken_transcription_results/{self.basename}*.txt"):
+            if os.path.isfile(file) and not overwrite_normalization:
+                print("Normalization file exists, passing")
+            else:
+                with open(file, "r") as transcription:
+                    transcription_as_string = transcription.read()
+                for orig, reg in table:
+                    transcription_as_string = transcription_as_string.replace(orig, reg)
+                with open(file.replace('.txt', '.normalized.txt'), "w") as normalized_file:
+                    normalized_file.write(transcription_as_string)
+            
     def get_annotated_lines(self, overwrite_extraction):
         """
         Writes to a specific folder
@@ -232,13 +250,15 @@ def kraken_transcribe(fragment, model):
 
 def main():
     path_to_images = sys.argv[1]
-    target_mss = Document(path=path_to_images, extension='png', 
+    target_mss = Document(path=path_to_images, 
+                          extension='png', 
                           yolo_model_path="train_results/train31/weights/best.pt", 
                           kraken_segmentation_model_path="models/segmentation_bl_v3.mlmodel", 
                           kraken_transcription_model="models/transcription_q.mlmodel",
-                          overwrite_extraction=True,
-                          overwrite_segmentation=True,
-                          overwrite_transcription=True)
+                          overwrite_extraction=False,
+                          overwrite_segmentation=False,
+                          overwrite_transcription=False,
+                          overwrite_normalization=True)
     target_mss.run_retrieval()
     
 if __name__ == '__main__':
