@@ -109,7 +109,7 @@ class Page():
                 print("Normalized text:")
                 print(transcription_as_string)
                 with open(file.replace('.txt', '.normalized.txt'), "w") as normalized_file:
-                    correctly_encoded = unicodedata.normalize(transcription_as_string, "NFC")
+                    correctly_encoded = unicodedata.normalize("NFC", transcription_as_string)
                     normalized_file.write(correctly_encoded)
             
     def get_annotated_lines(self, overwrite_extraction):
