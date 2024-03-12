@@ -101,6 +101,7 @@ class Page():
             else:
                 with open(file, "r") as transcription:
                     transcription_as_string = transcription.read()
+                print(table)
                 for orig, reg in table:
                     transcription_as_string = transcription_as_string.replace(orig, reg)
                 with open(file.replace('.txt', '.normalized.txt'), "w") as normalized_file:
