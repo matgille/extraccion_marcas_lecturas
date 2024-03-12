@@ -254,7 +254,7 @@ def main():
                           kraken_transcription_model="models/transcription_q.mlmodel",
                           overwrite_extraction=False,
                           overwrite_segmentation=False,
-                          overwrite_transcription=False,
+                          overwrite_transcription=True,
                           overwrite_normalization=True)
     target_mss.run_retrieval()
     
