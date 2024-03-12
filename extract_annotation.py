@@ -1,19 +1,14 @@
 import os
 import sys
-import time
 import numpy as np
 import json
-import skimage
 from kraken import blla
 from kraken.lib import models
 from kraken import rpred
 from kraken.lib import vgsl
-from kraken import transcribe as transcribe
 import glob
 from ultralytics import YOLO as YOLO
 from PIL import Image
-import cv2
-import matplotlib.pyplot as plt 
 
 
 
