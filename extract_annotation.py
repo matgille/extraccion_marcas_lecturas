@@ -1,3 +1,5 @@
+import os
+import sys
 import time
 import numpy as np
 import json
@@ -27,7 +29,14 @@ def read_json(path:str) -> dict:
 
 
 class Document:
-    def __init__(self, path, extension, yolo_model_path, kraken_segmentation_model_path, kraken_transcription_model):
+    def __init__(self, path, 
+                 extension, 
+                 yolo_model_path, 
+                 kraken_segmentation_model_path, 
+                 kraken_transcription_model,
+                 overwrite_extraction,
+                 overwrite_segmentation,
+                 overwrite_transcription):
         self.fragments = dict()
         self.path = path
         self.extension = extension
@@ -36,24 +45,38 @@ class Document:
         self.kraken_transcription_model = kraken_transcription_model
         self.yolo_model = YOLO(yolo_model_path)
         self.kraken_segmentation_model = vgsl.TorchVGSLModel.load_model(kraken_segmentation_model_path)
+        self.kraken_transcription_model = models.load_any(kraken_transcription_model, device="cuda:0")
+        self.overwrite_extraction = overwrite_extraction
+        self.overwrite_segmentation = overwrite_segmentation
+        self.ovewrite_transcription = overwrite_transcription
+        # Let's create the dirs
+        for directory in ["results/yolo_extracted_fragments/", 
+                          "results/kraken_segmentation_results", 
+                          "results/kraken_transcription_results"]:
+            try:
+                os.mkdir(directory)
+            except FileExistsError:
+                pass
     
     def run_retrieval(self):
         print("Starting process")
         print(f"{self.path}/*.{self.extension}")
-        for page in glob.glob(f"{self.path}/pg_02*{self.extension}"):
+        for page in glob.glob(f"{self.path}/pg_0*{self.extension}"):
             print(page)
-            NewPage = Page(page, self.yolo_model, self.kraken_segmentation_model, self.kraken_transcription_model)
-            NewPage.get_annotated_lines()
+            NewPage = Page(page, 
+                           self.yolo_model, 
+                           self.kraken_segmentation_model, 
+                           self.kraken_transcription_model)
+            NewPage.get_annotated_lines(overwrite_extraction=self.overwrite_extraction)
             if NewPage.annotated_lines:
                 print("Segmenting")
-                NewPage.segment_lines()
+                NewPage.segment_lines(overwrite_segmentation=self.overwrite_segmentation)
                 NewPage.get_lines()
-                NewPage.transcribe()
-            # zipped = list(zip(NewPage.annotated_fragments, NewPage.segmented_fragments, NewPage.transcribed_fragments))
-            # self.fragments[page] = zipped
+                NewPage.transcribe(overwrite_transcription=self.ovewrite_transcription)
             
 class Page():
     def __init__(self, page, yolo_model, kraken_segmentation_model, kraken_transcription_model):
+        self.basename = page.split("/")[-1].split(".")[0]
         self.annotated_fragments = list()
         self.fragments = dict()
         self.page = page
@@ -66,10 +89,10 @@ class Page():
         self.annotated_lines = None
         self.image = Image.open(page)
         self.annotated_fragments_in_page = []
-        self.transcription_model = models.load_any(kraken_transcription_model, device="cuda:0")
+        self.transcription_model = kraken_transcription_model
     
     
-    def get_annotated_lines(self):
+    def get_annotated_lines(self, overwrite_extraction):
         """
         Writes to a specific folder
         :param yolo_model: 
@@ -77,24 +100,30 @@ class Page():
         """
         # Here happens the yolo magick
         confidence_threshold = .25
-        self.annotated_lines = yolo_run(self.page, self.yolo_model, confidence_threshold)
-        if self.annotated_lines:
-            write_json("annotations.json", self.annotated_lines.boxes.xyxy.tolist())
-            extract_annotations(self.page, self.annotated_lines)
+        if os.path.isfile(f"results/yolo_extracted_fragments/{self.basename}.json") and not overwrite_extraction:
+            print("Annotations already identified. Passing.")
+            self.annotated_lines = read_json(f"results/yolo_extracted_fragments/{self.basename}.json")
+        else:
+            self.annotated_lines = yolo_run(self.page, self.yolo_model, confidence_threshold)
+            if self.annotated_lines:
+                write_json(f"results/yolo_extracted_fragments/{self.basename}.json", self.annotated_lines.boxes.xyxy.tolist())
+                extract_annotations(self.page, self.annotated_lines)
     
     def get_lines(self):
         """
-        This function takes 
+        This function extract the annotated lines from the kraken segmented page
         :param kraken_segmentation: 
         :return: 
         """
         
         for annotation in self.annotated_lines:
-            annot = [round(coord) for coord in annotation]
+            try:
+                annotation_as_list = annotation.boxes.xyxy.tolist()[0]
+            except AttributeError:
+                annotation_as_list = annotation
+            annot = [round(coord) for coord in annotation_as_list]
             x_1, y_1, x_2, y_2 = annot
-            full_rectangle = [(x_1, y_1), (x_1, y_2), (x_2, y_2), (x_2, y_1)]
             annotated_lines = []
-            
             # On va chercher les lignes dans le rectangle identifié
             for index, line in enumerate(self.segmentation['lines']):
                 baseline = line['baseline']
@@ -105,7 +134,7 @@ class Page():
                 if all([bx_1 > x_1, bx_2 < x_2, by_1 > y_1, by_2 < y_2]):
                     print("Found line")
                     annotated_lines.append(line)
-            print(len(annotated_lines))
+            print(f"Found {len(annotated_lines)} lines")
             new_dict = {"text-direction": "horizontal-lr", 
                         "type": "baselines", 
                         "lines": annotated_lines,
@@ -119,20 +148,32 @@ class Page():
         self.predictions = []
         for record in pred_it:
             self.predictions.append(record.prediction)
-        basename = self.page.replace(".png", f"_{index}.txt")
-        with open(basename, "w") as output_txt_file:
+        basename = self.page.split("/")[-1].replace(".png", f"_{index}.txt")
+        with open(f"results/kraken_transcription_results/{basename}", "w") as output_txt_file:
             output_txt_file.write("\n".join(self.predictions))
         
     
-    def segment_lines(self):
-        print(f"Segmenting {self.page}")
-        fragment = Image.open(self.page)
-        self.segmentation = blla.segment(fragment, model=self.kraken_segmentation_model, device="cuda:0")
+    def segment_lines(self, overwrite_segmentation):
+        target_file = f"results/kraken_segmentation_results/{self.basename}.json"
+        if os.path.isfile(target_file) and not overwrite_segmentation:
+            print("Page already segmented. Passing")
+            self.segmentation = read_json(target_file)
+        else:
+            print(f"Segmenting {self.page}")
+            fragment = Image.open(self.page)
+            self.segmentation = blla.segment(fragment, model=self.kraken_segmentation_model, device="cuda:0")
+            write_json(target_file, self.segmentation)
         
             
-    def transcribe(self):
-        for index, fragment in enumerate(self.annotated_fragments_in_page):
-            self.predict(index, fragment)
+    def transcribe(self, overwrite_transcription):
+        target_files = glob.glob(f"results/kraken_transcription_results/{self.basename}*.txt")
+        if len(target_files) > 0 and not overwrite_transcription:
+            print("Existing transcription, passing")
+        else:
+            print("Transcribing annotated fragments")
+            for index, fragment in enumerate(self.annotated_fragments_in_page):
+                self.predict(index, fragment)
+            
 
 
 def add_margin(pil_img, top, right, bottom, left, color):
@@ -165,8 +206,8 @@ def extract_annotations(page, yolo_result):
         width = img.shape[1]
         segmented_img = img[y_1:y_2, x_1:x_2, :]
         im_new = add_margin(segmented_img, 500, 200, 500, 200, (205,196,175))
-        im_new.save(f"results/extracted_fragments/{basename}_{index}.png")
-        print(f'Saved to results/extracted_fragments/{basename}_{index}.png')
+        im_new.save(f"results/kraken_transcription_results/{basename}_{index}.png")
+        print(f'Saved to results/kraken_transcription_results/{basename}_{index}.png')
 
 def yolo_run(page, model, confidence_threshold):
     # On ne choisit que la classe "lignes horizontales"
@@ -190,10 +231,14 @@ def kraken_transcribe(fragment, model):
 
 
 def main():
-    target_mss = Document(path="/home/mgl/Bureau/Travail/Reproductions/Aegidius_Romanus/Version_B/Esc_Q/burst", extension='png', 
+    path_to_images = sys.argv[1]
+    target_mss = Document(path=path_to_images, extension='png', 
                           yolo_model_path="train_results/train31/weights/best.pt", 
-                          kraken_segmentation_model_path="models/global_model_bl_best.mlmodel", 
-                          kraken_transcription_model="models/modele_finetuned_best.mlmodel")
+                          kraken_segmentation_model_path="models/segmentation_bl_v3.mlmodel", 
+                          kraken_transcription_model="models/transcription_q.mlmodel",
+                          overwrite_extraction=True,
+                          overwrite_segmentation=True,
+                          overwrite_transcription=True)
     target_mss.run_retrieval()
     
 if __name__ == '__main__':
