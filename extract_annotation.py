@@ -57,6 +57,9 @@ class Document:
                 os.mkdir(directory)
             except FileExistsError:
                 pass
+        if self.overwrite_normalization:
+            for norm_file in glob.glob(f"results/kraken_transcription_results/*normalized*"):
+                os.remove(norm_file)
     
     def run_retrieval(self):
         print("Starting process")
@@ -95,7 +98,8 @@ class Page():
     
     def normalize(self, overwrite_normalization):
         with open("models/abreviation_table.tsv", "r") as abreviation_table:
-            table = [item.replace("\n", "").split("\t") for item in abreviation_table.readlines()]
+            abbr_table = unicodedata.normalize("NFC", abreviation_table.read()).split("\n")
+            table = [item.replace("\n", "").split("\t") for item in abbr_table if item != ""]
         for file in glob.glob(f"results/kraken_transcription_results/{self.basename}*.txt"):
             if os.path.isfile(file) and not overwrite_normalization:
                 print("Normalization file exists, passing")
@@ -105,12 +109,12 @@ class Page():
                     print("Orig text:")
                 print(transcription_as_string)
                 for orig, reg in table:
+                    transcription_as_string = unicodedata.normalize("NFC", transcription_as_string)
                     transcription_as_string = transcription_as_string.replace(orig, reg)
                 print("Normalized text:")
                 print(transcription_as_string)
                 with open(file.replace('.txt', '.normalized.txt'), "w") as normalized_file:
-                    correctly_encoded = unicodedata.normalize("NFC", transcription_as_string)
-                    normalized_file.write(correctly_encoded)
+                    normalized_file.write(transcription_as_string)
             
     def get_annotated_lines(self, overwrite_extraction):
         """
@@ -257,7 +261,7 @@ def main():
                           kraken_transcription_model="models/transcription_q_v3.mlmodel",
                           overwrite_extraction=False,
                           overwrite_segmentation=False,
-                          overwrite_transcription=True,
+                          overwrite_transcription=False,
                           overwrite_normalization=True)
     target_mss.run_retrieval()
     
