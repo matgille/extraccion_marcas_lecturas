@@ -254,7 +254,7 @@ def main():
                           extension='png', 
                           yolo_model_path="train_results/train31/weights/best.pt", 
                           kraken_segmentation_model_path="models/segmentation_bl_v3.mlmodel", 
-                          kraken_transcription_model="models/transcription_q_v2.mlmodel",
+                          kraken_transcription_model="models/transcription_q_v3.mlmodel",
                           overwrite_extraction=False,
                           overwrite_segmentation=False,
                           overwrite_transcription=True,
