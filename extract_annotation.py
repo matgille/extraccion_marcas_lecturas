@@ -264,7 +264,7 @@ def main():
     path_to_images = sys.argv[1]
     target_mss = Document(path=path_to_images, 
                           extension='png', 
-                          yolo_model_path="train_results/train31/weights/best.pt", 
+                          yolo_model_path="models/yolo/weights/best.pt", 
                           kraken_segmentation_model_path="models/segmentation_bl_v3.mlmodel", 
                           kraken_transcription_model="models/transcription_q_v3.mlmodel",
                           overwrite_extraction=False,
