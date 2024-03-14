@@ -5,9 +5,13 @@ def extract_main(stopwords_list, pos_regex):
     directory = "/home/mgl/Bureau/Travail/Communications_et_articles/toulouse_mars/data/textos/lemmatized"
     with open(f"{directory}/incunable_lemmatized.txt", "r") as lemmatized_file:
         analyses = lemmatized_file.read().split("\n")
-    lemmes = [analyse.split()[1] for analyse in analyses if
+    filtered_lemmes = [analyse.split()[1] for analyse in analyses if
               len(analyse.split()) > 0 and not re.match(pos_regex, analyse.split()[2]) and not analyse.split()[
                                                                                                    1] in stopwords_list]
+    lemmes = [analyse.split()[1] for analyse in analyses if len(analyse.split()) > 0]
+    with open(f"{directory}/as_lemmas/incunable_as_lemmas_filtered.txt", "w") as output_file:
+        output_file.write("\n".join(filtered_lemmes))
+
     with open(f"{directory}/as_lemmas/incunable_as_lemmas.txt", "w") as output_file:
         output_file.write("\n".join(lemmes))
         
@@ -16,13 +20,18 @@ def extract_annotations(stopwords_list, pos_regex):
     files_path = "/home/mgl/Bureau/Travail/Communications_et_articles/toulouse_mars/scripts/results/kraken_transcription_results/*lemmatized"
     files = glob.glob(files_path)
     all_lemmas = []
+    all_filtered_lemmas = []
     print(files)
     for file in files:
         with open(file, "r") as lemmatized_file:
             analyses = lemmatized_file.read().split("\n")
-        lemmes = [analyse.split()[1] for analyse in analyses if len(analyse.split()) > 0 and not re.match(pos_regex, analyse.split()[2]) and not analyse.split()[1] in stopwords_list]
+        lemmes = [analyse.split()[1] for analyse in analyses if len(analyse.split()) > 0]
+        filtered_lemmes = [analyse.split()[1] for analyse in analyses if len(analyse.split()) > 0 and not re.match(pos_regex, analyse.split()[2]) and not analyse.split()[1] in stopwords_list]
+        all_filtered_lemmas.extend(filtered_lemmes)
         all_lemmas.extend(lemmes)
     print(all_lemmas)
+    with open(f"/home/mgl/Bureau/Travail/Communications_et_articles/toulouse_mars/data/textos/lemmatized/as_lemmas/annotations_as_lemmas_filtered.txt", "w") as output_file:
+        output_file.write("\n".join(all_lemmas))
     with open(f"/home/mgl/Bureau/Travail/Communications_et_articles/toulouse_mars/data/textos/lemmatized/as_lemmas/annotations_as_lemmas.txt", "w") as output_file:
         output_file.write("\n".join(all_lemmas))
         

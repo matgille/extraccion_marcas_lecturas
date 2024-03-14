@@ -124,9 +124,13 @@ class Page():
         """
         # Here happens the yolo magick
         confidence_threshold = .25
-        if os.path.isfile(f"results/yolo_extracted_fragments/{self.basename}.json") and not overwrite_extraction:
+        if not overwrite_extraction:
             print("Annotations already identified. Passing.")
-            self.annotated_lines = read_json(f"results/yolo_extracted_fragments/{self.basename}.json")
+            try:
+                self.annotated_lines = read_json(f"results/yolo_extracted_fragments/{self.basename}.json")
+                extract_annotations(self.page, self.annotated_lines)
+            except FileNotFoundError:
+                self.annotated_lines = None
         else:
             self.annotated_lines = yolo_run(self.page, self.yolo_model, confidence_threshold)
             if self.annotated_lines:
@@ -213,9 +217,12 @@ def add_margin(pil_img, top, right, bottom, left, color):
 
 def extract_annotations(page, yolo_result):
     basename = page.split("/")[-1].split(".")[0]
-    coords_as_tensors = yolo_result.boxes.xyxy
-    print(coords_as_tensors)
-    list_of_coords = coords_as_tensors.tolist()
+    try:
+        coords_as_tensors = yolo_result.boxes.xyxy
+        list_of_coords = coords_as_tensors.tolist()
+        print(coords_as_tensors)
+    except AttributeError:
+        list_of_coords = yolo_result
     for index, labels in enumerate(list_of_coords):
         labels = [int(coord) for coord in labels]
         # https://stackoverflow.com/a/61099508
@@ -228,7 +235,8 @@ def extract_annotations(page, yolo_result):
         width = img.shape[1]
         segmented_img = img[y_1:y_2, x_1:x_2, :]
         im_new = add_margin(segmented_img, 500, 200, 500, 200, (205,196,175))
-        im_new.save(f"results/kraken_transcription_results/{basename}_{index}.png")
+        pil_img = Image.fromarray(segmented_img)
+        pil_img.save(f"results/kraken_transcription_results/{basename}_{index}.png")
         print(f'Saved to results/kraken_transcription_results/{basename}_{index}.png')
 
 def yolo_run(page, model, confidence_threshold):
