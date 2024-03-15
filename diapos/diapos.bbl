@@ -1,0 +1,426 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{acero-durantez_VersionesTraduccionCastellana_2005}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7aa2d174af58b74f10b34dd9f8584e9b}{%
+           family={Acero-Durántez},
+           familyi={A\bibinithyphendelim D\bibinitperiod},
+           given={Isabel},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6529a30ae41518677b91f8f557311776}{%
+           family={Díez\bibnamedelima Garretas},
+           familyi={D\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={María\bibnamedelima Jesús},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=be238f824b342e536dc80fb8004db05c}{%
+           family={Fradejas\bibnamedelima Rueda},
+           familyi={F\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={José\bibnamedelima Manuel},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=34a2fe1a8f2060cac1f1be5812174f12}{%
+           family={Pampín\bibnamedelima Barral},
+           familyi={P\bibinitperiod\bibinitdelim B\bibinitperiod},
+           given={Mercedes},
+           giveni={M\bibinitperiod}}}%
+        {{hash=3f4962f99e300e515bbe078e0053b915}{%
+           family={Parrilla\bibnamedelima García},
+           familyi={P\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Carmen},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{068031c9cb76b2ac23ed2b7264190d2e}
+      \strng{fullhash}{068031c9cb76b2ac23ed2b7264190d2e}
+      \strng{bibnamehash}{068031c9cb76b2ac23ed2b7264190d2e}
+      \strng{authorbibnamehash}{068031c9cb76b2ac23ed2b7264190d2e}
+      \strng{authornamehash}{068031c9cb76b2ac23ed2b7264190d2e}
+      \strng{authorfullhash}{068031c9cb76b2ac23ed2b7264190d2e}
+      \strng{editorbibnamehash}{5bf7f6f8675abbfc00638aa7e8e58362}
+      \strng{editornamehash}{5bf7f6f8675abbfc00638aa7e8e58362}
+      \strng{editorfullhash}{5bf7f6f8675abbfc00638aa7e8e58362}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Actas Del {{IX Congreso Internacional}} de La {{Asociación Hispánica}} de Literatura Medieval : A {{Coruña}}, 18-22 de Septiembre de 2001}
+      \field{isbn}{84-96259-72-2}
+      \field{title}{Las Versiones {{A}} y {{B}} de La Traducción Castellana Del {{De}} Regimine Principum de {{Gil}} de {{Roma}}}
+      \field{volume}{I}
+      \field{year}{2005}
+      \field{dateera}{ce}
+      \field{pages}{227\bibrangedash 233}
+      \range{pages}{7}
+      \verb{urlraw}
+      \verb http://www.ahlm.es/IndicesActas/ActasPdf/Actas9.1/09.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.ahlm.es/IndicesActas/ActasPdf/Actas9.1/09.pdf
+      \endverb
+      \keyw{Description:codicologie,Serie:A,Serie:B,Serie:C,Series,Series:Comparación}
+    \endentry
+    \entry{clerice_YouActuallyLook_2022}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2c35cdfb1b7a434828d25584008f4362}{%
+           family={Clérice},
+           familyi={C\bibinitperiod},
+           given={Thibault},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2c35cdfb1b7a434828d25584008f4362}
+      \strng{fullhash}{2c35cdfb1b7a434828d25584008f4362}
+      \strng{bibnamehash}{2c35cdfb1b7a434828d25584008f4362}
+      \strng{authorbibnamehash}{2c35cdfb1b7a434828d25584008f4362}
+      \strng{authornamehash}{2c35cdfb1b7a434828d25584008f4362}
+      \strng{authorfullhash}{2c35cdfb1b7a434828d25584008f4362}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Layout Analysis (the identification of zones and their classification) is the first step along line segmentation in Optical Character Recognition and similar tasks. The ability of identifying main body of text from marginal text or running titles makes the difference between extracting the work full text of a digitized book and noisy outputs. We show that most segmenters focus on pixel classification and that polygonization of this output has not been used as a target for the latest competition on historical document (ICDAR 2017 and onwards), despite being the focus in the early 2010s. We propose to shift, for efficiency, the task from a pixel classification-based polygonization to an object detection using isothetic rectangles. We compare the output of Kraken and YOLOv5 in terms of segmentation and show that the later severely outperforms the first on small datasets (1110 samples and below). We release two datasets for training and evaluation on historical documents as well as a new package, YALTAi, which injects YOLOv5 in the segmentation pipeline of Kraken 4.1.}
+      \field{eprintclass}{cs}
+      \field{langid}{english}
+      \field{pubstate}{preprint}
+      \field{shorttitle}{You {{Actually Look Twice At}} It ({{YALTAi}})}
+      \field{title}{You {{Actually Look Twice At}} It ({{YALTAi}}): Using an Object Detection Approach Instead of Region Segmentation within the {{Kraken}} Engine}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/mgl/Bureau/These/Bibliotheque_zoteros/storage/JFWML7BV/Clérice - 2022 - You Actually Look Twice At it (YALTAi) using an o.pdf
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition}
+    \endentry
+    \entry{clerice_CATMuSMedievalMultilingual_2024}{article}{}
+      \name{author}{10}{ul=1}{%
+        {{un=0,uniquepart=base,hash=2c35cdfb1b7a434828d25584008f4362}{%
+           family={Clérice},
+           familyi={C\bibinitperiod},
+           given={Thibault},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a166bb8c04fe44d1b253a85b242eb717}{%
+           family={Ariane},
+           familyi={A\bibinitperiod},
+           given={Pinche},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=13829561e0e1c22afddde1c13741a790}{%
+           family={Malamatenia},
+           familyi={M\bibinitperiod},
+           given={Vlachou-Efstathiou},
+           giveni={V\bibinithyphendelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c4dbea9ec0220656c0bd4d86fd3b50c5}{%
+           family={Alix},
+           familyi={A\bibinitperiod},
+           given={Chagué},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5a0e4fdb78a6f0a810676d780b01d0d3}{%
+           family={Jean-Baptiste},
+           familyi={J\bibinithyphendelim B\bibinitperiod},
+           given={Camps},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2d9a83e32457807aa71cbf4597b830e4}{%
+           family={Matthias},
+           familyi={M\bibinitperiod},
+           given={Gille-Levenson},
+           giveni={G\bibinithyphendelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3aeaef3de051cc83392454544188e598}{%
+           family={Olivier},
+           familyi={O\bibinitperiod},
+           given={Brisville-Fertin},
+           giveni={B\bibinithyphendelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4b802858034a92072573b95e7baa148e}{%
+           family={Franz},
+           familyi={F\bibinitperiod},
+           given={Fischer},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e5983571aa6365281decf844be899af0}{%
+           family={Michaels},
+           familyi={M\bibinitperiod},
+           given={Gervers},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c433b135524be22cbf9f93661fe7630}{%
+           family={Agnès},
+           familyi={A\bibinitperiod},
+           given={Boutreux},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8d1ca32d237714aa97e11d22f24ecae9}
+      \strng{fullhash}{cb83d55a97aaab510505de316e93a5f3}
+      \strng{bibnamehash}{cb83d55a97aaab510505de316e93a5f3}
+      \strng{authorbibnamehash}{cb83d55a97aaab510505de316e93a5f3}
+      \strng{authornamehash}{8d1ca32d237714aa97e11d22f24ecae9}
+      \strng{authorfullhash}{cb83d55a97aaab510505de316e93a5f3}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{shorttitle}{{{CATMuS Medieval}}}
+      \field{title}{{{CATMuS Medieval}}: {{A}} Multilingual Large-Scale Cross-Century Dataset in {{Latin}} Script for Handwritten Text Recognition and Beyond}
+      \field{urlday}{14}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /home/mgl/Bureau/Travail/Bibliotheque_zoteros/storage/WNSZN7W9/Clérice et al. - 2024 - CATMuS Medieval A multilingual large-scale cross-.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://inria.hal.science/hal-04453952/
+      \endverb
+      \verb{url}
+      \verb https://inria.hal.science/hal-04453952/
+      \endverb
+    \endentry
+    \entry{gillelevenson_RegimientoPrincipesSa_2023}{thesis}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=237f3e60430254bc9d3619d213685032}{%
+           family={Gille\bibnamedelima Levenson},
+           familyi={G\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={Matthias},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{supervisor}{2}{}{%
+        {{hash=98c49f019e56cd504f383ac0ff751942}{%
+           family={Heusch},
+           familyi={H\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+        {{hash=c5f4124f3783d3f9e43454046959937b}{%
+           family={Velasco},
+           familyi={V\bibinitperiod},
+           given={Jesús\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {École Normale Supérieure de Lyon}%
+      }
+      \strng{namehash}{237f3e60430254bc9d3619d213685032}
+      \strng{fullhash}{237f3e60430254bc9d3619d213685032}
+      \strng{bibnamehash}{237f3e60430254bc9d3619d213685032}
+      \strng{authorbibnamehash}{237f3e60430254bc9d3619d213685032}
+      \strng{authornamehash}{237f3e60430254bc9d3619d213685032}
+      \strng{authorfullhash}{237f3e60430254bc9d3619d213685032}
+      \strng{supervisorbibnamehash}{071a2088a9db396a7553358510599469}
+      \strng{supervisornamehash}{071a2088a9db396a7553358510599469}
+      \strng{supervisorfullhash}{071a2088a9db396a7553358510599469}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Le {{Regimiento}} de Los Prínçipes et sa glose : étude et édition numérique de la partie sur le Gouvernement de la cité en temps de guerre ({{III}}, 3).}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://theses.hal.science/tel-04337406
+      \endverb
+      \verb{url}
+      \verb https://theses.hal.science/tel-04337406
+      \endverb
+      \keyw{LIRE}
+    \endentry
+    \entry{kiessling_KrakenUniversalText_2019}{unpublished}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=77c03197328a537f9c8626447cee396b}{%
+           family={Kiessling},
+           familyi={K\bibinitperiod},
+           given={Benjamin},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Utrecht}%
+      }
+      \strng{namehash}{77c03197328a537f9c8626447cee396b}
+      \strng{fullhash}{77c03197328a537f9c8626447cee396b}
+      \strng{bibnamehash}{77c03197328a537f9c8626447cee396b}
+      \strng{authorbibnamehash}{77c03197328a537f9c8626447cee396b}
+      \strng{authornamehash}{77c03197328a537f9c8626447cee396b}
+      \strng{authorfullhash}{77c03197328a537f9c8626447cee396b}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eventtitle}{{{DH2019}} : {{Complexity}}}
+      \field{title}{Kraken - an {{Universal Text Recognizer}} for the {{Humanities}}}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://dev.clariah.nl/files/dh2019/boa/0673.html
+      \endverb
+      \verb{url}
+      \verb https://dev.clariah.nl/files/dh2019/boa/0673.html
+      \endverb
+    \endentry
+    \entry{book:1682930}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=60e0776eab9ad2bb3da78fa156996838}{%
+           family={Moretti},
+           familyi={M\bibinitperiod},
+           given={Franco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Verso}%
+      }
+      \strng{namehash}{60e0776eab9ad2bb3da78fa156996838}
+      \strng{fullhash}{60e0776eab9ad2bb3da78fa156996838}
+      \strng{bibnamehash}{60e0776eab9ad2bb3da78fa156996838}
+      \strng{authorbibnamehash}{60e0776eab9ad2bb3da78fa156996838}
+      \strng{authornamehash}{60e0776eab9ad2bb3da78fa156996838}
+      \strng{authorfullhash}{60e0776eab9ad2bb3da78fa156996838}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Distant Reading}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /home/mgl/Bureau/These/Bibliotheque_zoteros/storage/GWR6JQBC/Moretti - 2013 - Distant reading.pdf
+      \endverb
+    \endentry
+    \entry{perret_les_2011}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b6114f49eea6dfb6a8670b7cec0059e3}{%
+           family={Perret},
+           familyi={P\bibinitperiod},
+           given={Noëlle-Laetitia},
+           giveni={N\bibinithyphendelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Leiden ; Boston}%
+      }
+      \list{publisher}{1}{%
+        {Brill}%
+      }
+      \strng{namehash}{b6114f49eea6dfb6a8670b7cec0059e3}
+      \strng{fullhash}{b6114f49eea6dfb6a8670b7cec0059e3}
+      \strng{bibnamehash}{b6114f49eea6dfb6a8670b7cec0059e3}
+      \strng{authorbibnamehash}{b6114f49eea6dfb6a8670b7cec0059e3}
+      \strng{authornamehash}{b6114f49eea6dfb6a8670b7cec0059e3}
+      \strng{authorfullhash}{b6114f49eea6dfb6a8670b7cec0059e3}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{90-04-20619-1}
+      \field{number}{39}
+      \field{series}{Education and Society in the Middle Ages and Renaissance}
+      \field{title}{Les traductions françaises du `De regimine principum' de Gilles de Rome: Parcours matériel, culturel et intellectuel d'un discours sur l'éducation}
+      \field{year}{2011}
+      \field{dateera}{ce}
+    \endentry
+    \entry{redmon_YouOnlyLook_2016}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=99bced2e56a5253f3fe98a5f04e6d9b2}{%
+           family={Redmon},
+           familyi={R\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=05ca9f19da9ecbd2def4e5514f8043c8}{%
+           family={Divvala},
+           familyi={D\bibinitperiod},
+           given={Santosh},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bd5dadbe57bedc5957c19a3154c4d424}{%
+           family={Girshick},
+           familyi={G\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=396c6ddedb6f986906fc3e4994d19974}{%
+           family={Farhadi},
+           familyi={F\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b5530443e433a4da53dbe3cf155225b4}
+      \strng{fullhash}{b5530443e433a4da53dbe3cf155225b4}
+      \strng{bibnamehash}{b5530443e433a4da53dbe3cf155225b4}
+      \strng{authorbibnamehash}{b5530443e433a4da53dbe3cf155225b4}
+      \strng{authornamehash}{b5530443e433a4da53dbe3cf155225b4}
+      \strng{authorfullhash}{b5530443e433a4da53dbe3cf155225b4}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{booktitle}{Proceedings of the {{IEEE}} Conference on Computer Vision and Pattern Recognition}
+      \field{shorttitle}{You Only Look Once}
+      \field{title}{You Only Look Once: {{Unified}}, Real-Time Object Detection}
+      \field{urlday}{14}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{779\bibrangedash 788}
+      \range{pages}{10}
+      \verb{file}
+      \verb /home/mgl/Bureau/Travail/Bibliotheque_zoteros/storage/WPAFM2CW/Redmon et al. - 2016 - You only look once Unified, real-time object dete.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Redmon_You_Only_Look_CVPR_2016_paper.html
+      \endverb
+      \verb{url}
+      \verb https://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Redmon_You_Only_Look_CVPR_2016_paper.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

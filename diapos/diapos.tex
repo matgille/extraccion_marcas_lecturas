@@ -10,6 +10,7 @@
 \usepackage[export]{adjustbox}
 \usepackage{pgfplots}
 \usepackage{tikz}
+\usepackage{hhline}
 \usetikzlibrary{shapes,calc,matrix,decorations.markings,decorations.pathreplacing,positioning, intersections,backgrounds,through,hobby}
 \usepackage{csquotes}
 \usepackage[french]{babel}
@@ -123,15 +124,17 @@ jointsupervision  = {{codirigée par}{codir\adddotspace }},
 \end{frame}
 
 
-\section*{Introducción}
-\addtocontents{toc}{Introducción}
+\section{Introducción}
+
 \begin{frame}{El \textit{Regimiento de los prínçipes}}
 \begin{center}
-\url{https://github.com/matgille/extraccion_marcas_lecturas}
 \begin{itemize}
 \item Traducción del \textit{De Regimine Principum} de Egidio Romano, escrito hacia 1276-80
+\item Difusión de la tripartición de la filosofía práctica (moral, economía, política)
 \item Supuestamente traducido para la educación de Pedro I a encargo del entorno de Alfonso 11
 \item Una tradición con más huellas de lectura que otras, como la francesa \parencite{perret_les_2011}.
+\item Enlace a los datos y programas: 
+\url{https://github.com/matgille/extraccion_marcas_lecturas}
 \end{itemize}
 \end{center}
 \end{frame}
@@ -271,13 +274,14 @@ Imagen del manuscrito
 
 \begin{frame}{Herramienta y modelo de extracción de las marcas}
 \begin{itemize}
-\item Se utiliza un método de \textbf{detección de objetos} con la herramienta YOLOv8 \parencite{redmon_YouOnlyLook_2016}:
+\item Se utiliza un método de \textbf{detección de objetos} con la herramienta YOLOv8 \parencite{redmon_YouOnlyLook_2016}. 
 \begin{figure}
 \begin{center}
 \includegraphics[height=.4\textheight]{img/yolo_detection.png}
 % Cadea Youtube Computer Vision with Hüseyin Özdemir
 \end{center}
 \end{figure}
+\item Esta herramienta ya se ha utilizado para identificar zonas de texto como columnas o miniaturas \parencite{clerice_YouActuallyLook_2022}.
 \item El modelo base se afina con 220 imágenes, o sea los 2/3 del corpus, lo que no es nada eficiente; sin embargo, el modelo se podrá reutilizar luego para ampliar el estudio.
 \end{itemize}
 \end{frame}
@@ -299,12 +303,11 @@ Imagen del manuscrito
 \end{frame}
 
 
-\subsection{Segmentación del fragmento anotado}
+\subsection{Segmentación de los fragmentos identificados}
 
 \begin{frame}{Herramienta y modelo de segmentación utilizado}
 \begin{itemize}
-\item El motor de segmentación kraken es utilizado como base. 
-\item Se afina el modelo general con una 27 páginas segmentadas a mano
+\item El motor de segmentación Kraken \parencite{kiessling_KrakenUniversalText_2019} se utiliza. 
 \end{itemize}
 \end{frame}
 
@@ -315,7 +318,7 @@ Imagen del manuscrito
 \end{frame}
 
 
-\subsection{Transcripción del fragmento segmentado}
+\subsection{Transcripción de los fragmentos segmentados}
 
 \begin{frame}{Herramienta y modelo de transcripción utilizado}
 \begin{itemize}
@@ -376,15 +379,16 @@ otͦs nobles q̃ nõ fuerõ asi cãdos ca asi com̃o los q̃
 
 
 
-\section{Resultados}
+\section{Estudio lexicométrico y primeros resultados}
 
 
 \begin{frame}{Lectura distante, lectura atenta}
 \begin{center}
 \begin{itemize}
-\item Moretti
-https://voyant-tools.org/?corpus=efc7db2029a3618d1658ce3e2d9b2069
-https://voyant-tools.org/?corpus=651c3dcd301dffe6018d341cfd5a952a
+\item \fullcite{book:1682930}
+\item La lexicometría como una forma de lectura distante, global, de un texto
+%https://voyant-tools.org/?corpus=efc7db2029a3618d1658ce3e2d9b2069
+%https://voyant-tools.org/?corpus=651c3dcd301dffe6018d341cfd5a952a
 \end{itemize}
 \end{center}
 \end{frame}
@@ -431,73 +435,34 @@ https://voyant-tools.org/?corpus=651c3dcd301dffe6018d341cfd5a952a
 \item Frecuencia absoluta (lemas): número de ocurrencia de un lema en el corpus
 \item Frecuencia relativa: $\frac{Frequencia\ absoluta\ (lemas)}{tama\tilde{n}o\ del\ corpus}$
 \item Frecuencia comparada: $\frac{Frequencia\ relativa\ (lemas)\ texto\ marcas}{Frequencia\ relativa\ (lemas)\ texto\ completo}$
-\item Si la frequencia comparada supera 1, el lema aparece -- en relativo -- más en las marcas que en el texto completo
-\end{itemize}
-\end{center}
-\end{frame}
-
-\begin{frame}{Términos políticos}
-\begin{center}
-
-\begin{itemize}
-\item Lo que interesa el lector es el actor político más que nada
-\begin{table}[!ht]
-    \centering
-    \begin{tabular}{|l|l|l|l|l|}
-    \hline
-        \textbf{Lemma} & \textbf{Frec. abs. (fragm)} & \textbf{Frec. rel (fragm)} & \textbf{Frec. abs. (incunable)} & \textbf{Razón} \\ \hline
-        príncipe & 32 & 0,0033 & 0,00128 & 2,58224 \\ \hline
-        principado & 10 & 0,00103 & 0,00024 & 4,27991 \\ \hline
-        rey & 60 & 0,0062 & 0,0043 & 1,44184 \\ \hline
-        caballero & 21 & 0,00217 & 0,00117 & 1,85388 \\ \hline
-        noble & 18 & 0,00186 & 0,00071 & 2,61203 \\ \hline
-    \end{tabular}
-\end{table}
+\item Si la frequencia comparada supera 1, el lema aparece -- en relativo -- más en los fragmentos anotados que en el texto completo, lo que puede significar un interés superior por el término
 \end{itemize}
 \end{center}
 \end{frame}
 
 
-\begin{frame}{Nobles y nobleza}
-\begin{center}
-\begin{itemize}
-\item La nobleza sin duda interesa particularmente el lector
-\begin{table}[!ht]
-    \centering
-    \begin{tabular}{|l|l|l|l|l|}
-    \hline
-        \textbf{Lemma} & \textbf{Frec. abs. (fragm)} & \textbf{Frec. rel (fragm)} & \textbf{Frec. abs. (incunable)} & \textbf{Razón} \\ \hline
-        hidalgo & 3 & 0,00031 & 0,00008 & 3,75681 \\ \hline
-        caballería & 13 & 0,00134 & 0,00043 & 3,13962 \\ \hline
-        caballero & 21 & 0,00217 & 0,00117 & 1,85388 \\ \hline
-        jurar & 6 & 0,00062 & 0,00008 & 8,1147 \\ \hline
-        espada & 6 & 0,00062 & 0,00014 & 4,31633 \\ \hline
-        escudo & 1 & 0,0001 & 0,00004 & 2,41509 \\ \hline
-        caballo & 1 & 0,0001 & 0,00015 & 0,69003 \\ \hline
-    \end{tabular}
-\end{table}
-\end{itemize}
-\end{center}
-\end{frame}
 
-\begin{frame}{El caballero}
+\begin{frame}{Términos morales}
 \begin{center}
+
 \begin{itemize}
-\item El caballero no designa al que combate a caballo, sino el que ciñe la espada y es ordenado
+\item Un interés menor por las virtudes, aunque no inexistente
 \begin{table}[!ht]
     \centering
     \begin{tabular}{|l|l|l|l|l|}
     \hline
         \textbf{Lemma} & \textbf{Frec. abs. (fragm)} & \textbf{Frec. rel (fragm)} & \textbf{Frec. abs. (incunable)} & \textbf{Razón} \\ \hline
-        hidalgo & 3 & 0,00031 & 0,00008 & 3,75681 \\ \hline
-        caballería & 13 & 0,00134 & 0,00043 & 3,13962 \\ \hline
-        caballero & 21 & 0,00217 & 0,00117 & 1,85388 \\ \hline
-        jurar & 6 & 0,00062 & 0,00008 & 8,1147 \\ \hline
-        espada & 6 & 0,00062 & 0,00014 & 4,31633 \\ \hline
-        escudo & 1 & 0,0001 & 0,00004 & 2,41509 \\ \hline
+        virtud & 21 & 0,00217 & 0,00175 & 1,237 \\  \hhline{|=|=|=|=|=|} 
+        fortaleza & 3 & 0,00031 & 0,00043 & 0,71939 \\ \hline
+        prudencia & 1 & 0,0001 & 0,00017 & 0,59318 \\ \hline
+        piedad & 1 & 0,0001 & 0,00017 & 0,60377 \\ \hline
+        soberbia & 1 & 0,0001 & 0,00021 & 0,49722 \\ \hline
+        lujuria & 1 & 0,0001 & 0,00019 & 0,53669 \\ \hline
+        misericordia & 1 & 0,0001 & 0,00016 & 0,62613 \\ \hline
     \end{tabular}
 \end{table}
 \end{itemize}
+
 \end{center}
 \end{frame}
 
@@ -505,7 +470,7 @@ https://voyant-tools.org/?corpus=651c3dcd301dffe6018d341cfd5a952a
 \begin{frame}{Economía y gestión de la casa}
 \begin{center}
 \begin{itemize}
-\item Poco interés por cuestiones de la segunda parte:
+\item Poco interés por cuestiones de economía, desarrolladas en la segunda parte:
 \begin{table}[!ht]
     \centering
     \begin{tabular}{|l|l|l|l|l|}
@@ -526,18 +491,67 @@ https://voyant-tools.org/?corpus=651c3dcd301dffe6018d341cfd5a952a
 \end{center}
 \end{frame}
 
-
-
-\begin{frame}{Términos morales}
+\begin{frame}{Términos políticos}
 \begin{center}
 
 \begin{itemize}
-\item Interés por nociones básicas de bien y de mal
-\item Poco interés por las virtudes
+\item Lo que interesa el lector parece ser el actor político como individuo, sea bueno o malo
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+        \textbf{Lemma} & \textbf{Frec. abs. (fragm)} & \textbf{Frec. rel (fragm)} & \textbf{Frec. abs. (incunable)} & \textbf{Razón} \\ \hline
+        príncipe & 32 & 0,0033 & 0,00128 & 2,58224 \\ \hline
+        rey & 60 & 0,0062 & 0,0043 & 1,44184 \\ \hline
+        tirano & 12 & 0,00124 & 0,0004 & 3,12104 \\ \hline
+        poderío & 10 & 0,00103 & 0,00053 & 1,93207 \\ \hline
+        caballero & 21 & 0,00217 & 0,00117 & 1,85388 \\ \hline
+        noble & 18 & 0,00186 & 0,00071 & 2,61203 \\ \hline\hhline{|=|=|=|=|=|}       
+	ciudad & 14 & 0,00145 & 0,00177 & 0,81754 \\ \hline
+        reino & 11 & 0,00114 & 0,00132 & 0,86093 \\ \hline
+    \end{tabular}
+\end{table}
 \end{itemize}
-
 \end{center}
 \end{frame}
+
+
+\begin{frame}{La tiranía}
+\begin{center}
+
+\begin{itemize}
+\item La definición de la tiranía y de sus características es puesta de relieve, en 10 fragmentos distintos casi todos localizados en III,2 (Del Gobierno de la ciudad en tiempos de paz)
+\item Servir a Dios (frag. 242\_2), buscar el bien común (90\_0, 234\_0), guardar la justicia (240\_0), defender y conservar el patrimonio del Reino (241\_0) como elementos de distinción entre tirano y monarca, así como algunos ejemplos (el tirano como Simia sobre el trono, según san Bernardo: 246\_1) que muestran un interés particular por la tiranía.
+\end{itemize}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{Nobles y nobleza}
+\begin{center}
+\begin{itemize}
+\item La nobleza sin duda interesa particularmente el lector
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+        \textbf{Lemma} & \textbf{Frec. abs. (fragm)} & \textbf{Frec. rel (fragm)} & \textbf{Frec. abs. (incunable)} & \textbf{Razón} \\ \hline
+        %hidalgo & 3 & 0,00031 & 0,00008 & 3,75681 \\ \hline
+        caballería & 13 & 0,00134 & 0,00043 & 3,13962 \\ \hline
+        caballero & 21 & 0,00217 & 0,00117 & 1,85388 \\ \hline        
+	noble & 18 & 0,00186 & 0,00071 & 2,61203 \\ \hline
+	nobleza & 6 & 0,00062 & 0,00017 & 3,62263 \\ \hline
+        jurar & 6 & 0,00062 & 0,00008 & 8,1147 \\ \hline
+        espada & 6 & 0,00062 & 0,00014 & 4,31633 \\ \hhline{|=|=|=|=|=|} 
+        % escudo & 1 & 0,0001 & 0,00004 & 2,41509 \\ 
+        caballo & 1 & 0,0001 & 0,00015 & 0,69003 \\ \hline
+    \end{tabular}
+\end{table}
+\item La caballería (?`como institución política tan solo?) también
+\end{itemize}
+\end{center}
+\end{frame}
+
 
 
 \subsection{Distribución de las marcas en el manuscrito}
@@ -568,29 +582,31 @@ https://voyant-tools.org/?corpus=651c3dcd301dffe6018d341cfd5a952a
 \subsection{Orientaciones de la lectura: algunos ejemplos}
 \begin{frame}{Parte I, 4: \enquote{De las costumbres de los reyes}}
 \begin{itemize}
-\item 24 marcas
+\item 24 marcas en total
 \item Un apego a la nobleza ante todo y a la defensa de la idea de superioridad de la nobleza (16 marcas)
-\item 112.0; 112.1;116.0 (sobre la riqueza sin nobleza)
-\item \begin{center}\includegraphics[width=.6\textwidth]{../results/kraken_transcription_results/pg_0116_0.png}\end{center}
+\begin{center}
+\includegraphics[width=.4\textwidth]{../results/kraken_transcription_results/pg_0112_0.png}
+\includegraphics[width=.4\textwidth]{../results/kraken_transcription_results/pg_0112_1.png}
+\includegraphics[width=.4\textwidth]{../results/kraken_transcription_results/pg_0113_1.png}
+\includegraphics[width=.4\textwidth]{../results/kraken_transcription_results/pg_0116_0.png}\end{center}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Parte II, 3: \enquote{El gobierno de los siervos}}
 \begin{itemize}
-\item 18 marcas
+\item Por estudiar !
 \end{itemize}
 \end{frame}
 
 
 
-\section*{Conclusiones}
-\addtocontents{toc}{Conclusiones}
+\section{Conclusiones}
 
 \begin{frame}{Un programa de lectura coherente}
 \begin{center}
 \begin{itemize}
-\item Una lectura política clara y constante del texto
-\item La nobleza 
+\item Una lectura política clara e intereses de lectura que se pueden identificar con relativa seguridad
+\item Estos intereses se inscriben bastante bien en el marco de los debates políticos del siglo 15, sobre la nobleza en particular.
 \end{itemize}
 \end{center}
 \end{frame}
@@ -599,6 +615,7 @@ https://voyant-tools.org/?corpus=651c3dcd301dffe6018d341cfd5a952a
 \begin{frame}{Por hacer}
 \begin{center}
 \begin{itemize}
+\item Completar los análisis de frecuencia con el contexto (co-ocurrencias)
 \item Ampliar el estudio a los otros tipos de marcas y a otros manuscritos
 \item Añadir una fase de corrección del texto
 \end{itemize}

@@ -1,0 +1,11 @@
+\babel@toc {french}{}\relax 
+\beamer@sectionintoc {1}{Introducción}{3}{0}{1}
+\beamer@sectionintoc {2}{Métodos de extracción de los fragmentos anotados}{17}{0}{2}
+\beamer@subsectionintoc {2}{1}{Identificación de las marcas de lectura}{19}{0}{2}
+\beamer@subsectionintoc {2}{2}{Segmentación de los fragmentos identificados}{22}{0}{2}
+\beamer@subsectionintoc {2}{3}{Transcripción de los fragmentos segmentados}{24}{0}{2}
+\beamer@sectionintoc {3}{Estudio lexicométrico y primeros resultados}{28}{0}{3}
+\beamer@subsectionintoc {3}{1}{Lectura distante: comparación de las frecuencias relativas de algunos términos}{30}{0}{3}
+\beamer@subsectionintoc {3}{2}{Distribución de las marcas en el manuscrito}{39}{0}{3}
+\beamer@subsectionintoc {3}{3}{Orientaciones de la lectura: algunos ejemplos}{40}{0}{3}
+\beamer@sectionintoc {4}{Conclusiones}{42}{0}{4}

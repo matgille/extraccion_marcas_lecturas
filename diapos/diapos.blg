@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'diapos.blg'
+[55] biber:340> INFO - === jeu. mars 14, 2024, 23:54:04
+[66] Biber.pm:419> INFO - Reading 'diapos.bcf'
+[126] Biber.pm:979> INFO - Found 8 citekeys in bib section 0
+[136] Biber.pm:4419> INFO - Processing section 0
+[144] Biber.pm:4610> INFO - Looking for bibtex file 'biblio.bib' for section 0
+[145] bibtex.pm:1713> INFO - LaTeX decoding ...
+[154] bibtex.pm:1519> INFO - Found BibTeX data source 'biblio.bib'
+[255] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[255] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[255] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'fr-FR'
+[255] Biber.pm:4245> INFO - No sort tailoring available for locale 'fr-FR'
+[267] bbl.pm:660> INFO - Writing 'diapos.bbl' with encoding 'UTF-8'
+[274] bbl.pm:763> INFO - Output to diapos.bbl

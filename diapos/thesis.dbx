@@ -1,0 +1,4 @@
+\ProvidesFile{thesis.dbx}[2014/06/14 supervisor for theses]
+\RequireBiber[3]
+\DeclareDatamodelFields[type=list,datatype=name]{supervisor}
+\DeclareDatamodelEntryfields[thesis]{supervisor}
